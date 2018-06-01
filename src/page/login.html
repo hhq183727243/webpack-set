@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <meta http-equiv="Pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="no-cache"> 
+    <meta http-equiv="Expires" content="0"> 
+    <title>后台登录</title> 
+    <link href="css/login.css" type="text/css" rel="stylesheet"> 
+</head> 
+<body> 
+    <div class="login">
+        <div class="message">品牌名称-管理登录</div>
+        <div id="darkbannerwrap"></div>
+        
+        <form action="signin" method="post">
+            <input name="name" placeholder="用户名" required="" type="text">
+            <hr class="hr15">
+            <input name="password" placeholder="密码" required="" type="password">
+            <hr class="hr15">
+            <div class="captcha">
+                <input name="name" placeholder="用户名" required="" type="text">
+                <canvas id="captcha"></canvas>
+            </div>
+            <hr class="hr15">
+            <input value="登录" style="width:100%;" type="submit">
+            <hr class="hr20">
+        </form>
+    </div>
+</body>
+<script>
+    var c = document.getElementById("captcha");
+    c.width = 80;
+    c.height = 40;
+    var ctx = c.getContext("2d");
+    ctx.font="20px Georgia";
+    // 创建渐变
+    var gradient=ctx.createLinearGradient(0,0,c.width,0);
+    gradient.addColorStop("0","magenta");
+    gradient.addColorStop("0.5","blue");
+    gradient.addColorStop("1.0","red");
+    // 用渐变填色
+    ctx.fillStyle=gradient;
+    ctx.fillText("6846",16,28);
+</script>
+</html>

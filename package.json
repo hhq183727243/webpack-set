@@ -1,0 +1,42 @@
+{
+  "name": "webpack-set",
+  "version": "1.0.0",
+  "description": "webpack 多页应用基础配置",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --open --config webpack.dev.config.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hhq183727243/webpack-set.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "hhq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hhq183727243/webpack-set/issues"
+  },
+  "homepage": "https://github.com/hhq183727243/webpack-set#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "mini-css-extract-plugin": "^0.4.0",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.4.0",
+    "webpack-dev-server": "^3.1.4",
+    "html-webpack-plugin": "^3.2.0"
+  },
+  "dependencies": {
+    "babel-loader": "^7.1.4",
+    "jquery": "^3.3.1",
+    "vue": "^2.5.16",
+    "webpack-cli": "^2.1.3"
+  }
+}

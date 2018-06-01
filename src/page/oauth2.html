@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>授权</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Bootstrap styles -->
+</head>
+<body>
+    页面跳转中...
+</body>
+<script>
+    var APPID = 'wxb679f57ad89729db',
+        REDIRECT_URI = encodeURIComponent('http://www.hhq.com/oauth2'),
+        SCOPE = 'snsapi_userinfo';
+
+    window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${APPID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPE}&state=STATE#wechat_redirect`;
+</script>
+</html>
