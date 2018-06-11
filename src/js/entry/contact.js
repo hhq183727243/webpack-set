@@ -1,5 +1,7 @@
 import Vue from "vue";//引入vue
-const ajax = require('./server.js');//引入ajax封装
+const ajax = require('../server.js');//引入ajax封装
+import '../../assets/css/public.css';
+
 
 new Vue({
     el: '#App',

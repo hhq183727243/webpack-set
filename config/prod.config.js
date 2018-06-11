@@ -8,6 +8,11 @@ const prodConfig = {
     plugins: [
         ...base_config.plugins,
         
+        // http://vuejs.github.io/vue-loader/en/workflow/production.html
+        new webpack.DefinePlugin({
+            IS_PRODUCTION: true
+        }),
+        
         //webpack清除打包文件夹中的文件
         new CleanWebpackPlugin(['dist'],{
             root: __dirname + '/../',       　　　　　//根目录
@@ -16,15 +21,6 @@ const prodConfig = {
             exclude: ['img']
         }),
 
-        // new webpack.optimize.SplitChunksPlugin({
-        //     chunks: "all",
-        //     minSize: 0,
-        //     minChunks: 2,
-        //     maxAsyncRequests: 5,
-        //     maxInitialRequests: 3,
-        //     name: 'commons'
-        // }),
-
         //webpack 4.0之后已上传CommonsChunkPlugin插件，
         //使用 ptimization.splitChunks and optimization.runtimeChunk替代
         // new webpack.optimize.CommonsChunkPlugin({
@@ -32,11 +28,6 @@ const prodConfig = {
         //     filename: 'js/[name].bundle.js', // 生成后的文件名，虽说用了[name]，但实际上就是'commons.bundle.js'了
         //     minChunks: 2, // 设定要有4个chunk（即4个页面）加载的js模块才会被纳入公共代码。这数目自己考虑吧，我认为3-5比较合适。
         // }),
-
-        // http://vuejs.github.io/vue-loader/en/workflow/production.html
-        new webpack.DefinePlugin({
-            IS_PRODUCTION: true
-        }),
 
         //文件拷贝，在dev中会将文件拷贝到内存中，在build中将文件拷贝到硬盘中
         new CopyWebpackPlugin([{

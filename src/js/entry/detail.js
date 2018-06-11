@@ -1,11 +1,9 @@
 import Vue from "vue";//引入vue
-import ajax from './server.js';//引入ajax封装
-import '../assets/css/style.css';
-import '../assets/css/public.css';
+import ajax from '../server.js';//引入ajax封装
 
-const hljs = require('./highlight.pack.js');
-const vue_cpnt = require('./vue.cpnt.js');//引入全局组件
-
+const hljs = require('../highlight.pack.js');
+const vue_cpnt = require('../vue.cpnt.js');//引入全局组件
+import '../../assets/css/home.css';
 vue_cpnt(Vue);//初始化后组件，由于该组件是全局组件，因此注册组件的vue应该可以实例化app的vue是同一个
 
 new Vue({

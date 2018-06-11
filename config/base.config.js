@@ -1,6 +1,8 @@
 /** 
  * @webpack 公用配置
 **/
+const fs = require('fs');
+
 const webpack = require('webpack');
 //css 代码抽取插件，可将多个css文件合并成一个,webpack4.0之后不再支持ExtractTextPlugin，使用MiniCssExtractPlugin代替
 //const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -10,28 +12,40 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 //引入path
 const path = require('path'); 
 
-const publictPath = '../src/js/';
+const publictPath = '../src/js/entry/';
 
-const js_file = [
-    'home',
-    'detail'
-];
+//遍历入口文件
+function getEntryFiles(dir) {
+    var files = fs.readdirSync(__dirname + '/' + dir);
 
-const entry_file = {}
+    //获取所有.js结尾的文件
+    var js_files = files.filter((f) => {
+        return f.endsWith('.js');
+    });
 
-js_file.forEach(item => {
-    entry_file[item] = path.resolve(__dirname, `${publictPath}${item}.js`);
+    return js_files;
+}
+
+const entry_js = getEntryFiles(publictPath);
+const entry_file = {
+    my_css: path.resolve(__dirname, `../src/js/common_css.js`)
+}
+
+entry_js.forEach(item => {
+    entry_file[item.replace(/.js$/g,'')] = path.resolve(__dirname, `${publictPath}${item}`);
 });
 
 const HtmlWebpackPlugin_temp = [];
 
 for(let key in entry_file){
-    HtmlWebpackPlugin_temp.push(new HtmlWebpackPlugin({
-        title: key,
-        template: path.resolve(__dirname, `../src/page/${key}.html`),
-        filename: `./page/${key}.html`,
-        chunks: ['vendors','commons','common_style',`runtime~${key}`,key] // 自动加载上业务的入口文件以及公共chunk
-    }));
+    if(key != 'my_css'){
+        HtmlWebpackPlugin_temp.push(new HtmlWebpackPlugin({
+            title: key,
+            template: path.resolve(__dirname, `../src/page/${key}.html`),
+            filename: `./page/${key}.html`,
+            chunks: ['vendors','commons','common_style',`runtime~${key}`,key] // 自动加载上业务的入口文件以及公共chunk
+        }));
+    }
 } 
 
 const devMode = process.env.NODE_ENV !== 'production'
@@ -90,13 +104,14 @@ module.exports = {
                 //     reuseExistingChunk: true
                 // },
                 styles: {
+                    minChunks: 3,//最少几个模块引入才抽取公共代码
                     name: 'common_style',
                     test: /\.css$/,
                     chunks: 'all',
                     enforce: true
                 },
                 vendors: {
-                    minChunks: 10,
+                    minChunks: 2,
                     name: 'vendors',
                     test: /[\\/]node_modules[\\/]/,
                     priority: 1
