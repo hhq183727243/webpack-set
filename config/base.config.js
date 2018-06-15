@@ -46,7 +46,7 @@ for(let key in entry_file){
             chunks: ['vendors','commons','common_style',`runtime~${key}`,key] // 自动加载上业务的入口文件以及公共chunk
         }));
     }
-} 
+}
 
 const devMode = process.env.NODE_ENV !== 'production'
 
